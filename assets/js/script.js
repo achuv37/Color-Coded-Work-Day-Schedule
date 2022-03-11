@@ -6,3 +6,9 @@
 // 5. Display color-coded time blocks to indicate whether it is in past,present or future.
 // 6. Set the local storage.
 // 7. Saved events persist, when the page reloaded again.
+
+// Declaring variables.
+var containerEl = $(".container");
+var showTime = ["9 am","10 am","11 am","12 am","1 am","2 am","3 am","4 am","5 am"];
+var timeId = ["9","10","11","12","13","14","15","16","17"];
+var saveButton = $("button");
