@@ -40,10 +40,23 @@
 // Append textarea to the row.
     rowEl.append(textareaEl);
 // Creating the save button for the events to save.
-    var buttonEl = $("<button type='button' class ='saveBtn col-1 far fa-save'>");
+    var buttonEl = $("<button type='button' class ='saveBtn col-1 fas fa-save'>");
     buttonEl.text();
 // Appends the button element to the row
     rowEl.append(buttonEl);
 // Appends the row to the container.
     containerEl.append(rowEl);
 }
+  localStorageEvents();
+// Creating local storage function: for the events to persist.
+  function localStorageEvents () {
+    for (var i=0; i<showTime.length; i++) {
+      $("textarea")[i].value = localStorage.getItem("localStorageEventList" +  String(i+1));
+    }
+  }
+  $("button").on("click", function (event) {
+    event.preventDefault();
+    for(var i=0; i<showTime.length; i++) {
+      localStorage.setItem("localStorageEventList" + String(i+1)), $("textarea")[i].value
+    }
+  });
