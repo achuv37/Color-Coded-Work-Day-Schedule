@@ -8,16 +8,42 @@
 // 7. Saved events persist, when the page reloaded again.
 
 // Declaring variables.
-var containerEl = $(".container");
-var showTime = ["9 am","10 am","11 am","12 am","1 am","2 am","3 am","4 am","5 am"];
-var timeId = ["9","10","11","12","13","14","15","16","17"];
-var saveButton = $("button");
+  var containerEl = $(".container");
+  var showTime = ["9 am","10 am","11 am","12 pm","1 pm","2 pm","3 pm","4 pm","5 pm"];
+  var timeId = ["9","10","11","12","13","14","15","16","17"];
+  var saveButton = $("button");
 
 // Display the current day: moment() function to get a Moment.js date object for the exact time 
 
-$("#currentDay").text(moment().format("Do MMMM YYYY, h: mm: ss a"));
+  $("#currentDay").text(moment().format("Do MMMM YYYY, h: mm: ss a"));
 
 // Display the current date and time every seconds.
-setInterval(function() {
+  setInterval(function() {
     $("#currentDay").text(moment().format("Do MMMM YYYY, h: mm: ss a"));
-},1000);
+  },1000);
+
+// We need to create a Time block: for loop to loop through the showTime and timeId arrays.
+  for (var i = 0; i <showTime.length; i++) {
+// Creating row for time block. 
+    var rowEl = $("<div class='row time-block'>");
+    rowEl.attr("id", timeId[i]);
+// Creating a div for showing time.
+    var timeEl = $("<div class='hour col-1'>");
+// Time div shows the time from 9 am to 5pm.
+    timeEl.text(showTime[i]);
+// Append the time division to the row
+    rowEl.append(timeEl);
+// Creating a textarea for user to enter events.
+    var textareaEl = $("<textarea class='col-10'>");
+    textareaEl.attr("id", showTime[i]);
+    textareaEl.text();
+// Append textarea to the row.
+    rowEl.append(textareaEl);
+// Creating the save button for the events to save.
+    var buttonEl = $("<button type='button' class ='saveBtn col-1 far fa-save'>");
+    buttonEl.text();
+// Appends the button element to the row
+    rowEl.append(buttonEl);
+// Appends the row to the container.
+    containerEl.append(rowEl);
+}
