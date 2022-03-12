@@ -57,6 +57,25 @@
   $("button").on("click", function (event) {
     event.preventDefault();
     for(var i=0; i<showTime.length; i++) {
-      localStorage.setItem("localStorageEventList" + String(i+1)), $("textarea")[i].value
+      localStorage.setItem("localStorageEventList" + String(i+1), $("textarea")[i].value)
     }
   });
+
+// Display color-coded time blocks to indicate whether it is in past,present or future.
+  function updateColorByHour () {
+    var currentHour = moment().hour();
+    for (var i=0; i <timeId.length; i++) {
+      if(timeId[i] < currentHour) {
+        $("textarea").addClass("past");
+      } else if(timeId[i] === currentHour) {
+        $("textarea").addClass("present");
+        $("textarea").removeClass("past");
+      } else if(timeId[i] > currentHour) {
+        $("textarea").addClass("future");
+        $("textarea").removeClass("present");
+        $("textarea").removeClass("past");
+      }
+
+    }
+  }
+  updateColorByHour();
