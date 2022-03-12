@@ -50,12 +50,17 @@
   localStorageEvents();
 // Creating local storage function: for the events to persist.
   function localStorageEvents () {
+  // For loop to iterate through the length of showTime.
     for (var i=0; i<showTime.length; i++) {
+  // Getting data from local storage.
       $("textarea")[i].value = localStorage.getItem("localStorageEventList" +  String(i+1));
     }
   }
+// Adding eventListener to All the button elements.
   $("button").on("click", function (event) {
+  // The event.preventDefault() method stops the default action of an element from happening.
     event.preventDefault();
+  // Storing the textarea values to local storage.
     for(var i=0; i<showTime.length; i++) {
       localStorage.setItem("localStorageEventList" + String(i+1), $("textarea")[i].value)
     }
@@ -63,6 +68,7 @@
 
 // Display color-coded time blocks to indicate whether it is in past,present or future.
   function updateColorByHour () {
+  // moment().hour() method gives the current hour
     var currentHour = moment().hour();
     for (var i=0; i <timeId.length; i++) {
       if(timeId[i] < currentHour) {
