@@ -12,15 +12,17 @@
   var showTime = ["9 am","10 am","11 am","12 pm","1 pm","2 pm","3 pm","4 pm","5 pm"];
   var timeId = ["9","10","11","12","13","14","15","16","17"];
   var saveButton = $("button");
+  var displayDay = $("#currentDay");
 
 // Display the current day: moment() function to get a Moment.js date object for the exact time 
-
-  $("#currentDay").text(moment().format("Do MMMM YYYY, h: mm: ss a"));
-
+function displayTime() {
+  var dateTime = moment().format("MMM DD, YYYY [at] h: mm: ss a");
+  displayDay.text(dateTime);
+}
 // Display the current date and time every seconds.
-  setInterval(function() {
-    $("#currentDay").text(moment().format("Do MMMM YYYY, h: mm: ss a"));
-  },1000);
+  setInterval(displayTime, 1000);
+    
+  
 
 // We need to create a Time block: for loop to loop through the showTime and timeId arrays.
   for (var i = 0; i <showTime.length; i++) {
@@ -51,37 +53,40 @@
 // Creating local storage function: for the events to persist.
   function localStorageEvents () {
   // For loop to iterate through the length of showTime.
-    for (var i=0; i<showTime.length; i++) {
+      for (var i=0; i<showTime.length; i++) {
   // Getting data from local storage.
-      $("textarea")[i].value = localStorage.getItem("localStorageEventList" +  String(i+1));
+      $("textarea")[i].value = localStorage.getItem("localStorageEventList" + String(i + 1));
+      }
     }
-  }
+  
 // Adding eventListener to All the button elements.
   $("button").on("click", function (event) {
   // The event.preventDefault() method stops the default action of an element from happening.
     event.preventDefault();
+    
   // Storing the textarea values to local storage.
     for(var i=0; i<showTime.length; i++) {
-      localStorage.setItem("localStorageEventList" + String(i+1), $("textarea")[i].value)
+
+      localStorage.setItem("localStorageEventList" + String(i+1), $("textarea")[i].value);
     }
   });
 
 // Display color-coded time blocks to indicate whether it is in past,present or future.
   function updateColorByHour () {
   // moment().hour() method gives the current hour
-    var currentHour = moment().hour();
-    for (var i=0; i <timeId.length; i++) {
-      if(timeId[i] < currentHour) {
-        $("textarea").addClass("past");
-      } else if(timeId[i] === currentHour) {
-        $("textarea").addClass("present");
-        $("textarea").removeClass("past");
-      } else if(timeId[i] > currentHour) {
-        $("textarea").addClass("future");
-        $("textarea").removeClass("present");
-        $("textarea").removeClass("past");
+    var currentTime = moment().hour();
+    $(".time-block").each(function () {
+      var specificHour = parseInt($(this).attr("id").split(" ")[0]);
+      if(specificHour < currentTime) {
+        $(this).addClass("past");
+      } else if(specificHour == currentTime) {
+        $(this).removeClass("past");
+        $(this).addClass("present");
+      } else {
+        $(this).removeClass("past");
+        $(this).removeClass("present");
+        $(this).addClass("future");
       }
-
-    }
+    });
   }
   updateColorByHour();
