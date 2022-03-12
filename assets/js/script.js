@@ -64,6 +64,7 @@ function displayTime() {
   // The event.preventDefault() method stops the default action of an element from happening.
     event.preventDefault();
     
+    
   // Storing the textarea values to local storage.
     for(var i=0; i<showTime.length; i++) {
 
@@ -75,18 +76,22 @@ function displayTime() {
   function updateColorByHour () {
   // moment().hour() method gives the current hour
     var currentTime = moment().hour();
+  // The forEach() method executes a provided function once for each array element.
     $(".time-block").each(function () {
+  // The parseInt function converts its first argument to a string, parses that string, then returns an integer.    
       var specificHour = parseInt($(this).attr("id").split(" ")[0]);
+  // Checking the conditions and adding to corresponding classes.
       if(specificHour < currentTime) {
-        $(this).addClass("past");
+        $(this).addClass("past"); // Gray color
       } else if(specificHour == currentTime) {
         $(this).removeClass("past");
-        $(this).addClass("present");
+        $(this).addClass("present"); // Red color
       } else {
         $(this).removeClass("past");
         $(this).removeClass("present");
-        $(this).addClass("future");
+        $(this).addClass("future"); // Green color
       }
     });
   }
+  // calling the function.
   updateColorByHour();
