@@ -55,8 +55,8 @@ function displayTime() {
   // For loop to iterate through the length of showTime.
       for (let index=0; index<showTime.length; index++) {
   // Getting data from local storage.
-      $("textarea")[index].value = localStorage.getItem("localStorageEventList" + String(index));
-      }
+        $("textarea")[index].value = localStorage.getItem("localStorageEventList" + String(index));
+     }
     }
   
 // Adding eventListener to All the button elements.
@@ -69,6 +69,7 @@ function displayTime() {
     for(let index=0; index<showTime.length; index++) {
 
       localStorage.setItem("localStorageEventList" + String(index), $("textarea")[index].value);
+      
     }
   });
 
@@ -79,7 +80,7 @@ function displayTime() {
   // The forEach() method executes a provided function once for each array element.
     $(".time-block").each(function () {
   // The parseInt function converts its first argument to a string, parses that string, then returns an integer.    
-      var specificHour = parseInt($(this).attr("id").split(" ")[0]);
+      var specificHour = parseInt($(this).attr("id"));
   // Checking the conditions and adding to corresponding classes.
       if(specificHour < currentTime) {
         $(this).addClass("past"); // Gray color
