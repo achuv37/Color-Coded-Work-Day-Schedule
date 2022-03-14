@@ -24,7 +24,7 @@ function displayTime() {
     
   
 
-// We need to create a Time block: for loop to loop through the showTime and timeId arrays.
+// We need to create a Time block: for loop to iterate through the showTime and timeId arrays.
   for (var i = 0; i <showTime.length; i++) {
 // Creating row for time block. 
     var rowEl = $("<div class='row time-block'>");
@@ -55,7 +55,7 @@ function displayTime() {
   // For loop to iterate through the length of showTime.
       for (let index=0; index<showTime.length; index++) {
   // Getting data from local storage.
-      $("textarea")[index].value = localStorage.getItem("localStorageEventList" + String(index + 1));
+      $("textarea")[index].value = localStorage.getItem("localStorageEventList" + String(index));
       }
     }
   
@@ -68,7 +68,7 @@ function displayTime() {
   // Storing the textarea values to local storage.
     for(let index=0; index<showTime.length; index++) {
 
-      localStorage.setItem("localStorageEventList" + String(index+1), $("textarea")[index].value);
+      localStorage.setItem("localStorageEventList" + String(index), $("textarea")[index].value);
     }
   });
 
