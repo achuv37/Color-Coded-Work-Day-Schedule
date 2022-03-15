@@ -53,10 +53,11 @@ function displayTime() {
 // Creating local storage function: for the events to persist.
   function localStorageEvents () {
   // For loop to iterate through the length of showTime.
-      for (let index=0; index<showTime.length; index++) {
+      for (var index=0; index<showTime.length; index++) {
   // Getting data from local storage.
-        $("textarea")[index].value = localStorage.getItem("localStorageEventList" + String(index));
-     }
+      $("textarea")[index].value = localStorage.getItem("localStorageEventList" + String(index +1));
+      
+    }
     }
   
 // Adding eventListener to All the button elements.
@@ -66,10 +67,8 @@ function displayTime() {
     
     
   // Storing the textarea values to local storage.
-    for(let index=0; index<showTime.length; index++) {
-
-      localStorage.setItem("localStorageEventList" + String(index), $("textarea")[index].value);
-      
+    for(var index=0; index<showTime.length; index++) {
+      localStorage.setItem("localStorageEventList" + String(index +1), $("textarea")[index].value);
     }
   });
 
