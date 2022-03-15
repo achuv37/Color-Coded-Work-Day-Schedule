@@ -2,7 +2,7 @@
 // 1. Display the Current day at the top of the calender. setInterval function displays the time every seconds
 // 2. Display the Day planner presented with the time blocks for standard business hours.
 // 3. Create Time, Textarea, Save button for the time block section.
-// 4. Allow us to enter a event in the text area section, when it clicked.
+// 4. Allow user to enter a event in the text area section, when it clicked.
 // 5. Display color-coded time blocks to indicate whether it is in past,present or future.
 // 6. Set the local storage.
 // 7. Saved events persist, when the page reloaded again.
@@ -50,6 +50,7 @@ function displayTime() {
     }
   }
   createPlanner(); 
+
 // Calling localStorageEvent function.
   localStorageEvents();
 // Creating local storage function: for the events to persist.
@@ -61,14 +62,11 @@ function displayTime() {
       
     }
   }
-  
-// Adding eventListener to All the button elements.
+  // Adding eventListener to All the button elements.
   $("button").on("click", function (event) {
   // The event.preventDefault() method stops the default action of an element from happening.
     event.preventDefault();
-    
-    
-  // Storing the textarea values to local storage.
+    // Storing the textarea values to local storage.
     for(var index=0; index<showTime.length; index++) {
       localStorage.setItem("localStorageEventList" + String(index +1), $("textarea")[index].value);
     }
