@@ -5,8 +5,7 @@
   * Create Time, Textarea, Save button for the time block section.
   * Allow user to enter a event in the text area section, when it clicked.
   * Display color-coded time blocks to indicate whether it is in past,present  or future.
-  * Set the local storage.
-  * Saved events persist, when the page reloaded again.
+  * Set the local storage, Saved events persist, when the page reloaded again.
 ## Description
   * The current date,time displays at the top of the calender. Moment() function to get a Moment.js date object for the exact time. Set interval function displays the time every seconds.The function displayTime shows the time.
   * The function createPlanner for generating time block. The time block  contains rows. Which shows the time/hour on left side, a textarea part for the events at center and save button on the right side. The time block contains 9 rows for standard business hours( 9 am to 5 pm).
